@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG-color application</title>
+    <style>
+        #color-tab{
+            height:auto;
+            width:80%;
+            flex-wrap: wrap;
+            display: flex;
+            margin-left: 40px;
+            margin-right:40px;
+            justify-content:space-around;
+            align-items: center;
+            padding: 5px;
+            
+
+        }
+        .select{
+            height:2rem;
+            width:4rem;
+            border: 2px solid black;
+            text-align: center;
+            cursor:pointer;
+        }
+        .container{
+            width:100%;
+           height:auto;
+          background-color: beige;
+          display:flex;
+          overflow:hidden;
+          justify-content: space-around;
+          align-items: center;
+            
+        }
+        .addcolor{
+            height: 60%;
+            width:20rem;
+            display:flex;
+        }
+        
+    </style>
+</head>
+<body><div class="container">
+       <div id="color-tab">
+        <div  onclick="changebackgroundColor('green')" class="select" id="green">green</div>
+        <div onclick="changebackgroundColor('red')" class="select" id="red">red</div>
+        <div onclick="changebackgroundColor('blue')" class="select" id="blue">blue</div>
+        <div onclick="changebackgroundColor('violet')" class="select" id="violet">violet</div>
+        
+       </div>
+       <div class="addcolor">      <input type="text" placeholder="enter color">
+        <button onclick="addcolor()">addcolor</button></div>
+    </div>
+    
+    <script>
+       
+          function selectdivcolor(){
+            const divs=document.querySelectorAll("#color-tab .select");
+            divs.forEach(div=>{
+                const value=div.id;
+            div.style.backgroundColor=value;
+
+            });
+           
+          }
+          function changebackgroundColor(color){
+
+            document.body.style.backgroundColor=color;
+          } 
+          function addcolor(){
+            const el2=document.querySelector("input");
+            const value1= el2.value;
+            if(value1){
+            const newEl =document.createElement("div");
+            newEl.setAttribute("class","select");
+            newEl.setAttribute("id",value1)
+            newEl.innerHTML= value1;
+            newEl.addEventListener("click",function(){
+                changebackgroundColor(value1);
+            });
+            document.querySelector("#color-tab").appendChild(newEl);
+            selectdivcolor();
+            }
+            else {
+                alert("Please enter a valid color");
+            }
+         
+        }
+
+          selectdivcolor();
+          
+
+    
+    </script>
+</body>
+</html>
